@@ -37,20 +37,45 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+     
         <ul class="nav navbar-nav ml-auto">
-            @if(count(config('panel.available_languages', [])) > 1)
-                <li class="nav-item dropdown d-md-down-none">
-                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        {{ strtoupper(app()->getLocale()) }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        @foreach(config('panel.available_languages') as $langLocale => $langName)
-                            <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
-                        @endforeach
-                    </div>
-                </li>
-            @endif
+          <li class="nav-item">
+              <a class="btn btn-primary" target="_blank" href="{{url('/')}}">
+                Front End
+              </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link nav-link"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                class="img-avatar"
+                src="{{url('assets/front/images/person_2.jpg')}}"
+                alt="admin@bootstrapmaster.com"
+              />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-header text-center">
+                <strong>Account</strong>
+              </div>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-bell-o"></i> Updates
+                <span class="badge badge-info">42</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-shield"></i> Lock Account</a
+              >
+              <a class="dropdown-item" href="#"> <i class="fa fa-lock"></i> Logout</a>
+            </div>
+          </li>
         </ul>
+
     </header>
 
     <div class="app-body">

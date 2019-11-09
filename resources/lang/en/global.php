@@ -143,7 +143,7 @@ return [
     'redeem_time'                          => 'Redeem time',
     'coupon_management'                    => 'Coupon Management',
     'time_management'                      => 'Time management',
-    'projects'                             => 'Projects',
+    'projects'                             => 'CMS',
     'time_entries'                         => 'Time entries',
     'work_type'                            => 'Work type',
     'work_types'                           => 'Work types',
@@ -311,7 +311,7 @@ return [
     'deselect_all'                         => 'Deselect all',
     'team-management'                      => 'Teams',
     'team-management-singular'             => 'Team',
-    'site_title'                           => 'Laravel + CoreUI',
+    'site_title'                           => 'H3',
     'userManagement'                       => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',

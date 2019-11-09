@@ -3,6 +3,11 @@
 
 Route::group(['prefix' => '', 'namespace' => 'Front', 'middleware' => []], function () {
   Route::get('/', 'HomeController@index')->name('home');
+  Route::get('/about', 'AboutController@index');
+  Route::get('/projects', 'ProjectsController@index');
+  Route::get('/services', 'ServicesController@index');
+  Route::get('/blog', 'BlogController@index');
+  Route::get('/contact', 'ContactController@index');
 });
 
 
@@ -22,9 +27,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('roles', 'RolesController');
 
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
-
+    Route::any('users/listener', 'UsersController@listener');
     Route::resource('users', 'UsersController');
-
+    
     Route::delete('products/destroy', 'ProductsController@massDestroy')->name('products.massDestroy');
 
     Route::resource('products', 'ProductsController');

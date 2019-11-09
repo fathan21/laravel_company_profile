@@ -24,13 +24,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                             </div>
-                            <input name="email" type="text" class="form-control" placeholder="{{ trans('global.login_email') }}">
+                            <input name="email" type="email" class="form-control" placeholder="{{ trans('global.login_email') }}"
+                              value="admin@admin.com"
+                            >
                         </div>
                         <div class="input-group mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                             </div>
-                            <input name="password" type="password" class="form-control" placeholder="{{ trans('global.login_password') }}">
+                            <input name="password" value="password" type="password" class="form-control" placeholder="{{ trans('global.login_password') }}">
                         </div>
                         <div class="row">
                             <div class="col-6">

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
+use Datatables;
+use DB;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
@@ -11,6 +15,11 @@ use App\User;
 
 class UsersController extends Controller
 {
+
+    function __construct()
+    {
+        $this->_model = new User;
+    }
     public function index()
     {
         abort_unless(\Gate::allows('user_access'), 403);
@@ -58,7 +67,7 @@ class UsersController extends Controller
         $user->roles()->sync($request->input('roles', []));
 
         return redirect()->route('admin.users.index');
-    }
+    }   
 
     public function show(User $user)
     {
@@ -83,5 +92,39 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, 204);
+    }
+
+
+    public function listener(Request $request)
+    {
+        
+        $search  = $request->input('search.value');
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $request->input('order');
+
+        $count_total =0;
+
+        $count_filter =0;
+        $items = $this->_model->select(['id','name']);
+
+        print_r($items);die;
+        if($order){
+            foreach ($order as $o) {
+                if(isset($columns[ $o[ 'column' ] ])) {
+                    $items = $items->orderBy($columns[ $o[ 'column' ] ][ 'name' ], $o[ 'dir' ]);
+                }
+            }
+        }
+        if($start){
+            $items = $items->start($start)->limit($limit);
+        }
+
+        return Datatables::of($items)
+                         ->with([
+                             "recordsTotal"    => $count_total,
+                             "recordsFiltered" => $count_filter,
+                         ])
+                         ->make(TRUE);
     }
 }

@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class BlogController extends Controller
 {
     public function index()
     {
-        $data = array();
+      $data = array();
 
-        return view('front.home.home', $data);
+      return view('front.blog.blog', $data);
     }
 }
